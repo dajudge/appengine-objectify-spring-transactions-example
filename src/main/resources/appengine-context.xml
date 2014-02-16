@@ -8,19 +8,21 @@
             http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context-3.0.xsd"
-            >
+        >
 
+    <!-- The bean that will be used for AOP advice -->
     <bean id="appEngineTransactionManager" class="com.example.AppEngineTransactionManager"/>
+
     <aop:config>
         <aop:aspect ref="appEngineTransactionManager">
-            <aop:pointcut id="facadeMethod" expression=
-                    "execution(* com.example..*.*BCI.*(..))"/>
-            <aop:around
-                    pointcut-ref="facadeMethod"
-                    method="transact"/>
+            <!-- Match all our facades (naming convention com.example.*.XyzBCI) -->
+            <aop:pointcut id="facadeMethod" expression="execution(* com.example..*.*BCI.*(..))"/>
+            <!-- Invoke the around advice whenever the pointcut matches -->
+            <aop:around pointcut-ref="facadeMethod" method="transact"/>
         </aop:aspect>
     </aop:config>
 
+    <!-- Component scan for ease of use -->
     <context:component-scan base-package="com.example"/>
 
 </beans>

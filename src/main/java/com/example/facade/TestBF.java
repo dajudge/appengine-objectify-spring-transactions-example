@@ -23,11 +23,11 @@ public class TestBF implements TestBCI {
         Car car = createSampleEntity(series);
         ofy().save().entity(car).now();
         if (fail) {
-            throw new LolcatsException();
+            throw new LolCatsException();
         }
     }
 
     private Car createSampleEntity(String series) {
-        return new Car(series,"TestCar " + series);
+        return new Car(series, "TestCar " + series);
     }
 }

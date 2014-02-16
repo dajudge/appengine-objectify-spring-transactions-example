@@ -10,9 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import javax.annotation.Resource;
 
@@ -25,7 +23,6 @@ import static org.junit.Assert.assertNotNull;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:appengine-context.xml")
-@TestExecutionListeners(listeners = {DependencyInjectionTestExecutionListener.class})
 public class TransactionManagerTest {
 
     @Resource
@@ -35,8 +32,15 @@ public class TransactionManagerTest {
 
     @Before
     public void setup() {
+        // Objectify wants to know all entities
         ObjectifyService.register(Car.class);
+        // Appengine integration test setup
         helper.setUp();
+    }
+
+    @After
+    public void tearDown() {
+        helper.tearDown();
     }
 
     @Test
@@ -45,7 +49,7 @@ public class TransactionManagerTest {
 
         try {
             testBCI.createCar("series3");
-        } catch (TestBCI.LolcatsException e) {
+        } catch (TestBCI.LolCatsException e) {
         }
         assertNull(ofy().load().type(Car.class).id("series3").now());
     }
@@ -61,15 +65,9 @@ public class TransactionManagerTest {
         assertNotNull(ofy().load().type(Car.class).id("series2").now());
     }
 
-    @Test(expected = TestBCI.LolcatsException.class)
+    @Test(expected = TestBCI.LolCatsException.class)
     public void throws_correct_exception_on_rollback() {
         testBCI.setFailOnCreate(true);
         testBCI.createCar("series4");
-    }
-
-
-    @After
-    public void tearDown() {
-        helper.tearDown();
     }
 }

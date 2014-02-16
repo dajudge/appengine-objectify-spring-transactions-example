@@ -9,6 +9,6 @@ public interface TestBCI {
 
     public void createCar(String uuid);
 
-    public class LolcatsException extends RuntimeException {
+    public class LolCatsException extends RuntimeException {
     }
 }

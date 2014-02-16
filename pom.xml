@@ -10,9 +10,8 @@
 
     <properties>
         <version.spring>3.2.6.RELEASE</version.spring>
-        <version.appengine>1.8.8</version.appengine>
         <version.aspectj>1.6.11</version.aspectj>
-        <version.junit>4.8.1</version.junit>
+        <version.appengine>1.8.9</version.appengine>
     </properties>
 
     <dependencies>
@@ -26,17 +25,6 @@
             <groupId>com.googlecode.objectify</groupId>
             <artifactId>objectify</artifactId>
             <version>4.0b3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-jdk14</artifactId>
-            <version>1.7.5</version>
         </dependency>
 
         <dependency>
@@ -71,7 +59,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${version.junit}</version>
+            <version>4.8.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
