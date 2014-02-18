@@ -3,9 +3,6 @@ package com.example.entities;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
-/**
- * Created by romanl on 03.02.14.
- */
 @Entity
 public class Car {
 

@@ -18,9 +18,6 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 import static junit.framework.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 
-/**
- * Created by romanl on 03.02.14.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:appengine-context.xml")
 public class TransactionManagerTest {

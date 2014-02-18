@@ -5,9 +5,6 @@ import org.springframework.stereotype.Component;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-/**
- * Created by romanl on 03.02.14.
- */
 @Component
 public class TestBF implements TestBCI {
 

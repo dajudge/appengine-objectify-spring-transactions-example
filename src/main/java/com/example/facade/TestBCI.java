@@ -1,9 +1,5 @@
 package com.example.facade;
 
-/**
- * Created by romanl on 03.02.14.
- */
-
 public interface TestBCI {
     public void setFailOnCreate(boolean fail);
 

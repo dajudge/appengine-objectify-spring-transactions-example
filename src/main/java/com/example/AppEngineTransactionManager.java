@@ -5,20 +5,16 @@ import org.aspectj.lang.ProceedingJoinPoint;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-/**
- * Created by romanl on 03.02.14.
- */
 public class AppEngineTransactionManager {
 
-    public Object transact(final ProceedingJoinPoint joinpoint) throws Throwable {
+    public Object transact(final ProceedingJoinPoint joinPoint) throws Throwable {
 
         try {
             return ofy().transactNew(new Work<Object>() {
                 @Override
                 public Object run() {
                     try {
-                        Object ret = joinpoint.proceed();
-                        return ret;
+                        return joinPoint.proceed();
                     } catch (Throwable throwable) {
                         throw new ExceptionWrapper(throwable);
                     }
@@ -32,18 +28,8 @@ public class AppEngineTransactionManager {
     }
 
     private static class ExceptionWrapper extends RuntimeException {
-        private static final long serialVersionUID = 1L;
-
         public ExceptionWrapper(Throwable cause) {
             super(cause);
-        }
-
-        /**
-         * This makes the cost of using the ExceptionWrapper negligible
-         */
-        @Override
-        public synchronized Throwable fillInStackTrace() {
-            return this;
         }
     }
 
